@@ -19,7 +19,12 @@ public class InjectActivity<P extends InjectPresenter> extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
+        onCreatePresenter(presenter);
         presenter.mContext = this;
+    }
+
+    protected void onCreatePresenter(P presenter){
+
     }
 
     public <E extends P> E getPresenter() {

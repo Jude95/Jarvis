@@ -18,6 +18,9 @@ public class BindPresenter<D extends ViewDataBinding> extends DecorationPresente
 
     D createDataBinding(LayoutInflater inflater, ViewGroup container,boolean attach) {
         Class<D> viewDataBindingClass = ParametrizedTypeUtil.getTypeArgumentClass(getClass(), 0);
+        if (viewDataBindingClass == null){
+            throw new IllegalArgumentException("DataBinding class no found in "+getClass());
+        }
         return ViewBindingHelper.createDataBinding(viewDataBindingClass, inflater, container, attach);
     }
 
