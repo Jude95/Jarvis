@@ -35,8 +35,8 @@ dependencies {
 }
 
 
-ext{
-    jarvis_version = '1.0.0-SNAPSHOT'
+ext {
+    jarvis_version = '1.0.1-SNAPSHOT'
     jarvis_artifact = 'jarvis'
     jarvis_group = 'com.jude'
 }
@@ -44,43 +44,23 @@ ext{
 version = jarvis_version
 group = jarvis_group
 
-if (internalRepo) {
-    apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'com.bmuschko.nexus'
 
-    modifyPom {
-        project {
-            groupId jarvis_group
-            artifactId jarvis_artifact
-            version jarvis_version
-            packaging 'aar'
-        }
+modifyPom {
+    project {
+        groupId jarvis_group
+        artifactId jarvis_artifact
+        version jarvis_version
+        packaging 'aar'
     }
-    extraArchive {
-        sources = true
-    }
-
-    nexus {
-        sign = false
-        repositoryUrl = 'http://maven.91hiya.com/repository/jinuo/'
-        snapshotRepositoryUrl = 'http://maven.91hiya.com/repository/jinuo-snapshot/'
-    }
-
-} else {
-    apply plugin: 'com.novoda.bintray-release'
-
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-    publish {
-        userOrg = 'eleme-mt-arch'
-        groupId = 'com.jude'
-        artifactId = 'jarvis'
-        publishVersion = '1.0.1'
-        desc = 'A MVVM framework for Android'
-        website = 'https://github.com/jude95/jarvis'
-        bintrayUser = properties.getProperty('bintrayUser')
-        bintrayKey = properties.getProperty('bintrayKey')
-        dryRun = false
-    }
-
 }
+extraArchive {
+    sources = true
+}
+
+nexus {
+    sign = false
+    repositoryUrl = 'http://maven.91hiya.com/repository/jinuo/'
+    snapshotRepositoryUrl = 'http://maven.91hiya.com/repository/jinuo-snapshot/'
+}
+

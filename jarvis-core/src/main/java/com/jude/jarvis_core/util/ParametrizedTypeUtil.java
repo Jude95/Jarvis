@@ -9,6 +9,17 @@ import java.lang.reflect.Type;
 
 public class ParametrizedTypeUtil {
 
+    public static Class getSuperTypeArgumentClass(Class clazz, int index) {
+        while (clazz != Object.class) {
+            Class argClass = getTypeArgumentClass(clazz, index);
+            if (argClass != null) {
+                return argClass;
+            }
+            clazz = clazz.getSuperclass();
+        }
+        return null;
+    }
+
     public static Class getTypeArgumentClass(Class clazz, int index) {
         Class pClass = null;
         do {

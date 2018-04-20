@@ -41,8 +41,7 @@ public class MultiListPresenter extends ListPresenter<ActivityListMultiBinding,A
         list.add(new Cat("二妞",R.mipmap.cat1));
         list.add(new Dog("狗剩",R.mipmap.dog3));
         Single.just(list)
+                .compose(this.<List<Animal>>getDisposableTransformer())
                 .subscribe(getRefreshConsumer());
-
-
     }
 }

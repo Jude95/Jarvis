@@ -50,6 +50,21 @@ public class DefaultWindowAction extends WindowAction {
         getDecorationActivity().finish();
     }
 
+    @Override
+    public boolean isProgressViewShowing() {
+        return false;
+    }
+
+    @Override
+    public void showProgressView() {
+        throw new IllegalStateException("showProgressView() not implement");
+    }
+
+    @Override
+    public void dismissProgressView() {
+        throw new IllegalStateException("dismissProgressView() not implement");
+    }
+
     public static class Factory extends WindowAction.Factory{
 
         @Override

@@ -20,15 +20,15 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-public class ProgressDialogTransform<T> implements ObservableTransformer<T, T>, CompletableTransformer,SingleTransformer<T,T>,FlowableTransformer<T,T> {
+public class ProgressActionTransform<T> implements ObservableTransformer<T, T>, CompletableTransformer,SingleTransformer<T,T>,FlowableTransformer<T,T> {
     private DecorationPresenter presenter;
 
-    public ProgressDialogTransform(DecorationPresenter presenter) {
+    public ProgressActionTransform(DecorationPresenter presenter) {
         this.presenter = presenter;
     }
 
-    public static <T> ProgressDialogTransform<T> newInstance(DecorationPresenter presenter){
-        return new ProgressDialogTransform<>(presenter);
+    public static <T> ProgressActionTransform<T> newInstance(DecorationPresenter presenter){
+        return new ProgressActionTransform<>(presenter);
     }
 
     @Override
@@ -37,13 +37,13 @@ public class ProgressDialogTransform<T> implements ObservableTransformer<T, T>, 
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        presenter.getWindowActions().showLoadingView();
+                        presenter.getWindowActions().showProgressView();
                     }
                 })
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
-                        presenter.getWindowActions().dismissLoadingView();
+                        presenter.getWindowActions().dismissProgressView();
 
                     }
                 });
@@ -55,13 +55,13 @@ public class ProgressDialogTransform<T> implements ObservableTransformer<T, T>, 
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        presenter.getWindowActions().showLoadingView();
+                        presenter.getWindowActions().showProgressView();
                     }
                 })
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
-                        presenter.getWindowActions().dismissLoadingView();
+                        presenter.getWindowActions().dismissProgressView();
 
                     }
                 });
@@ -73,13 +73,13 @@ public class ProgressDialogTransform<T> implements ObservableTransformer<T, T>, 
                 .doOnSubscribe(new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        presenter.getWindowActions().showLoadingView();
+                        presenter.getWindowActions().showProgressView();
                     }
                 })
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
-                        presenter.getWindowActions().dismissLoadingView();
+                        presenter.getWindowActions().dismissProgressView();
 
                     }
                 });
@@ -91,13 +91,13 @@ public class ProgressDialogTransform<T> implements ObservableTransformer<T, T>, 
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        presenter.getWindowActions().showLoadingView();
+                        presenter.getWindowActions().showProgressView();
                     }
                 })
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
-                        presenter.getWindowActions().dismissLoadingView();
+                        presenter.getWindowActions().dismissProgressView();
 
                     }
                 });

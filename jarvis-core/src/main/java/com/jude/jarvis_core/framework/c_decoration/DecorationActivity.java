@@ -79,6 +79,7 @@ public class DecorationActivity<P extends DecorationPresenter> extends InjectAct
 
     /**
      * 这个需求应该没有例外吧?
+     * 有，DrawerLayout的指示器
      * @param item
      * @return
      */

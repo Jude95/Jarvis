@@ -28,7 +28,6 @@ public abstract class ListPresenter<D extends ViewDataBinding, M> extends Jarvis
     private ListViewConfig mListViewConfig;
     private int page = 0;
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     private Consumer<List<M>> mRefreshConsumer = new Consumer<List<M>>() {
         @Override
@@ -96,7 +95,6 @@ public abstract class ListPresenter<D extends ViewDataBinding, M> extends Jarvis
     @Override
     public void onViewDetached() {
         super.onViewDetached();
-        mCompositeDisposable.dispose();
     }
 
     private void initRecyclerView(){
@@ -176,19 +174,6 @@ public abstract class ListPresenter<D extends ViewDataBinding, M> extends Jarvis
 
     public void setCurPage(int page){
         this.page = page;
-    }
-
-    public void addDisposable(Disposable disposable){
-        mCompositeDisposable.add(disposable);
-    }
-
-    public <T> DisposableTransformer<T> getDisposableTransformer(){
-        return new DisposableTransformer<>(new Consumer<Disposable>() {
-            @Override
-            public void accept(Disposable disposable) throws Exception {
-                mCompositeDisposable.add(disposable);
-            }
-        });
     }
 
 

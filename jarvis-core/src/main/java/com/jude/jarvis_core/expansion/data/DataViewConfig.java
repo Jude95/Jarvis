@@ -7,7 +7,8 @@ package com.jude.jarvis_core.expansion.data;
 public class DataViewConfig {
     boolean startWithProgress = false;
 
-    public void setStartWithProgress(boolean startWithProgress) {
+    public DataViewConfig setStartWithProgress(boolean startWithProgress) {
         this.startWithProgress = startWithProgress;
+        return this;
     }
 }

@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
  * Created by zhuchenxi on 2017/1/16.
  */
 
-public abstract class WindowAction implements ILoadingView,IErrorView,IWindow{
+public abstract class WindowAction implements ILoadingView,IProgressView,IErrorView,IWindow{
     DecorationActivity activity;
     FrameLayout container;
 

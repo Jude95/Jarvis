@@ -15,10 +15,14 @@ public class ViewBindingHelper {
 
     public static void bindPresenter(ViewDataBinding dataBinding,Object object){
         try {
-            Method method = dataBinding.getClass().getMethod("setPresenter",object.getClass());
-            method.invoke(dataBinding,object);
-            return;
-        } catch (NoSuchMethodException e) {
+            for (Method method : dataBinding.getClass().getMethods()) {
+                if(method.getName().equals("setPresenter")
+                        && method.getParameterTypes().length == 1
+                        && method.getParameterTypes()[0].isAssignableFrom(object.getClass())){
+                    method.invoke(dataBinding,object);
+                    return;
+                }
+            }
         } catch (InvocationTargetException e) {
         } catch (IllegalAccessException e) {
         }
