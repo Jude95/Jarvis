@@ -16,7 +16,7 @@ import io.reactivex.functions.Consumer;
  */
 
 public class LifeCyclePresenter<D extends ViewDataBinding> extends BindPresenter<D> implements PresenterLifeCycle{
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    protected CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     @Override
     public void onViewAttached(Context ctx) {
@@ -24,7 +24,7 @@ public class LifeCyclePresenter<D extends ViewDataBinding> extends BindPresenter
 
     @Override
     public void onViewDetached() {
-        mCompositeDisposable.dispose();
+        mCompositeDisposable.clear();
     }
 
     @Override

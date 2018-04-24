@@ -17,7 +17,6 @@ import com.jude.jarvis_core.framework.z_base.JarvisPresenter;
 public class DataPresenter<D extends ViewDataBinding,M> extends JarvisPresenter<D> {
 
     public ObservableField<M> data = new ObservableField<>();;
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     private Consumer<M> mDataConsumer = new Consumer<M>() {
         @Override
@@ -43,30 +42,9 @@ public class DataPresenter<D extends ViewDataBinding,M> extends JarvisPresenter<
         }
     }
 
-    @Override
-    public void onViewDetached() {
-        super.onViewDetached();
-        mCompositeDisposable.dispose();
-    }
-
     public void onDataChange(M m){
 
     }
-
-
-    public void addDisposable(Disposable disposable){
-        mCompositeDisposable.add(disposable);
-    }
-
-    public <T> DisposableTransformer<T> getDisposableTransformer(){
-        return new DisposableTransformer<>(new Consumer<Disposable>() {
-            @Override
-            public void accept(Disposable disposable) throws Exception {
-                mCompositeDisposable.add(disposable);
-            }
-        });
-    }
-
 
     public Consumer<M> getDataConsumer() {
         return mDataConsumer;
@@ -87,8 +65,7 @@ public class DataPresenter<D extends ViewDataBinding,M> extends JarvisPresenter<
         if (getWindowActions().isErrorViewShowing()){
             getWindowActions().dismissErrorView();
         }
-        mCompositeDisposable.dispose();
-        mCompositeDisposable = new CompositeDisposable();
+        mCompositeDisposable.clear();
         onDataChange(m);
         data.set(m);
     }

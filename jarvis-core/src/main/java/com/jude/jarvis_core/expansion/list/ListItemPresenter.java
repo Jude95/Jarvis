@@ -17,40 +17,16 @@ import io.reactivex.functions.Consumer;
 
 public abstract class ListItemPresenter<D extends ViewDataBinding,M> extends JarvisPresenter<D> {
     public ObservableField<M> data = new ObservableField<>();
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
-    public <T> DisposableTransformer<T> getDisposableTransformer(){
-        return new DisposableTransformer<>(new Consumer<Disposable>() {
-            @Override
-            public void accept(Disposable disposable) throws Exception {
-                mCompositeDisposable.add(disposable);
-            }
-        });
-    }
 
     public void onDataChange(M m){
 
     }
 
     void publish(M data){
-        mCompositeDisposable.dispose();
-        mCompositeDisposable = new CompositeDisposable();
+        mCompositeDisposable.clear();
         onDataChange(data);
         this.data.set(data);
     }
 
-    @Override
-    public void onViewAttached(Context ctx) {
-        super.onViewAttached(ctx);
-        if (mCompositeDisposable.isDisposed()){
-            this.data.set(data.get());
-        }
-        mCompositeDisposable = new CompositeDisposable();
-    }
-
-    @Override
-    public void onViewDetached() {
-        super.onViewDetached();
-        mCompositeDisposable.dispose();
-    }
 }
