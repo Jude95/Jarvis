@@ -61,8 +61,8 @@ public class AboutPresenter extends JarvisPresenter<ActivityAboutBinding> {
 Presenter 与 xml 双向绑定，负责获取数据，更新UI即可。
 
 ## API
-[双向绑定](doc/tow-way-binding.md)
-[Presenter 生命周期](doc/presenter.md)
-[视图模块化]()
-[Data 模板](doc/data.md)
-[List 模板页面](doc/list.md)
+[双向绑定](./doc/tow-way-binding.md)
+[Presenter 生命周期](./doc/presenter.md)
+[视图模块化](./doc/view_module.md)
+[Data 模板](./doc/data.md)
+[List 模板页面](./doc/list.md)
