@@ -29,7 +29,20 @@ Presenter 简化了各个 UI 组件复杂的生命周期。提供了最简单的
 
 可以在这里进行一些 UI 相关订阅的解除操作。
 
-## 实用模板
-Jarvis 提供了2个 Presenter 子类的实现，来处理2个模板场景。
-你也可以对 Presenter 制作更多的定制模板。
+## API
+```
+// 取当前视图
+getRootView();
 
+// 取当前视图宿主Content
+getContext();
+
+// 取当前视图的DataBinding类
+getViewDataBinding();
+
+// 取窗口操作执行器，用于操作视图所在窗口(Activity)
+getWindowActions();
+
+// 一个与生命周期挂钩的 Rxjava Transformer。会是目标链路在视图 onViewDetached 时断开。
+getDisposableTransformer();
+```

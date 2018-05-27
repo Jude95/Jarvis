@@ -27,9 +27,6 @@ Jarvis 全面支持 Rxjava2, 所以数据添加都是以 Consumer 的形式提�
     public Consumer<List<M>> getRefreshConsumer();
     public Consumer<List<M>> getMoreConsumer();
     public Consumer<Throwable> getErrorConsumer();
-
-    // 进行 DisposableTransformer 后，这条链路会在视图销毁时自动断开
-    public <T> DisposableTransformer<T> getDisposableTransformer()
 ```
 
 ### 设置ItemView
@@ -40,7 +37,7 @@ Jarvis 全面支持 Rxjava2, 所以数据添加都是以 Consumer 的形式提�
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        itemPresenter='@{"me.ele.grandstore.presentation.item.CIItemPresenter"}'
+        itemPresenter='@{"com.jude.sample.presentation.item.CIItemPresenter"}'
         dividerColor='@{@color/colorPrimary}'
         dividerHeight='@{@dimen/divider_height}'/>
 ```

@@ -12,10 +12,6 @@ Jarvis 全面支持 Rxjava2, 所以数据添加都是以 Consumer 的形式提�
 ```java
     public Consumer<M> getDataConsumer();
     public Consumer<Throwable> getErrorConsumer();
-
-    // 进行 DisposableTransformer 后，这条链路会在视图销毁时自动断开
-    public <T> DisposableTransformer<T> getDisposableTransformer()
-
 ```
 
 ## 异常处理
